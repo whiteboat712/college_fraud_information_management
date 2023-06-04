@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/college_fraud_information_management.iml" filepath="$PROJECT_DIR$/college_fraud_information_management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project_frontend/project_frontend.iml" filepath="$PROJECT_DIR$/project_frontend/project_frontend.iml" />
+    </modules>
+  </component>
+</project>
