@@ -5,4 +5,6 @@
 ### 技术栈
  - springboot
  - vue
+ - Element Plus
+ - vue-axios
 
