@@ -12,7 +12,7 @@ import {Lock, User} from '@element-plus/icons-vue'
     </div>
     <div style="width: 400px; background-color: lightblue">
       <div style="text-align: center; margin-top: 150px; padding: 0 35px 0 35px">
-        <div style="font-size: 25px">登录</div>
+        <div style="font-size: 30px; color: white">高校诈骗信息管理系统</div>
         <div style="font-size: 14px; color: white; margin-top: 20px">在进入系统之前请输入用户名和密码</div>
         <div style="margin-top: 30px">
           <el-input type="text" placeholder="用户名/邮箱">
