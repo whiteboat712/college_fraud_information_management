@@ -22,7 +22,6 @@ public class AuthorizeService implements UserDetailsService {
         Account account = mapper.findAccountByNameOrEmail(username);
         if (account == null)
             throw new UsernameNotFoundException("用户名或密码错误");
-
         return User
                 .withUsername(account.getUsername())
                 .password(account.getPassword())
