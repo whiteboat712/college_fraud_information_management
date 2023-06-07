@@ -22,7 +22,7 @@ const login = () => {
       remember: form.remember
     }, (message) => {
       ElMessage.success(message)
-      router.push('/backend/index')
+      router.push('/backend/index/overview')
     })
   }
 
