@@ -20,7 +20,7 @@ const changePage = (url) => {
       default-active="1-1"
       class="el-menu-vertical-demo"
       on-select=""
-      style="height: 100vh"
+      style="height: calc(100vh - 60px)"
   >
     <el-sub-menu index="1">
       <template #title>

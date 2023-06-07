@@ -57,7 +57,7 @@ const getInformation = () => {
 <template>
   <div>
     <el-container>
-      <el-header style="align-items: center">
+      <el-header>
         <!--        放个组件        -->
         <Topheader/>
       </el-header>
@@ -66,7 +66,7 @@ const getInformation = () => {
           <!--        放个组件        -->
           <Sidebar/>
         </el-aside>
-        <el-main>
+        <el-main style="background-color: #f6f8fb">
           <!--        放个组件        -->
           <router-view/>
         </el-main>

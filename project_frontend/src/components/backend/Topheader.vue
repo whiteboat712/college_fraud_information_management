@@ -17,11 +17,11 @@ const logout = () => {
 
 <template>
   <div>
-    <el-row :gutter="20" style="height: 60px">
-      <el-col :span="18">
+    <el-row :gutter="20">
+      <el-col :span="21">
         <h1>高校诈骗信息管理系统后台</h1>
       </el-col>
-      <el-col :span="6" style="height: 60px">
+      <el-col :span="3">
         <div>
           <el-switch v-model="darkmode" />
           <el-dropdown @command="handleCommand">
