@@ -1,11 +1,16 @@
 <script setup>
 
-import {get} from "@/net";
-import {ElMessage} from "element-plus";
-import router from "@/router";
-import informationApi from "@/api/informationApi.js";
 import {reactive} from "vue";
 import axios from "axios";
+
+// 我的组件
+import Sidebar from "@/components/backend/Sidebar.vue";
+import Topheader from "@/components/backend/Topheader.vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+
+
 
 const information = reactive({
   id: '',
@@ -19,12 +24,7 @@ const information = reactive({
   // time: '',
 })
 
-const logout = () => {
-  get('/api/auth/logout', (message) => {
-    ElMessage.success(message)
-    router.push('/')
-  })
-}
+
 
 const getInformation = () => {
   axios
@@ -55,13 +55,25 @@ const getInformation = () => {
 </script>
 
 <template>
-  <h1>主页</h1>
-  <ElButton @click="logout()" type="danger">退出登录</ElButton>
-  <ElButton @click="getInformation()" type="primary">获取数据</ElButton>
-  <el-input v-model="information.id">123</el-input>
-  <el-input v-model="information.sid">123</el-input>
-  <el-input v-model="information.sname">123</el-input>
-  <router-view/>
+  <div>
+    <el-container>
+      <el-header style="align-items: center">
+        <!--        放个组件        -->
+        <Topheader/>
+      </el-header>
+      <el-container>
+        <el-aside>
+          <!--        放个组件        -->
+          <Sidebar/>
+        </el-aside>
+        <el-main>
+          <!--        放个组件        -->
+          <router-view/>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+
 </template>
 
 <style scoped>

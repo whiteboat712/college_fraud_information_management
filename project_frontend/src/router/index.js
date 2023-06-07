@@ -19,6 +19,28 @@ const router = createRouter({
       path: '/backend/index',
       name: 'backend-index',
       component: () => import('@/views/backend/IndexView.vue'),
+      children: [
+        {
+          path: 'overview',
+          name: 'overview',
+          component: () => import('@/components/backend/overview.vue'),
+        },
+        {
+          path: 'analysis',
+          name: 'data-analysis',
+          component: () => import('@/components/backend/analysis.vue'),
+        },
+        {
+          path: 'informationmanagement',
+          name: 'information-management',
+          component: () => import('@/components/backend/InformationManagement.vue'),
+        },
+        {
+          path: 'usermanagement',
+          name: 'user-management',
+          component: () => import('@/components/backend/UserManagement.vue'),
+        }
+      ]
 
     }
   ]
