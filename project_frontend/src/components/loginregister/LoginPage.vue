@@ -5,6 +5,7 @@ import {reactive} from "vue";
 import {ElMessage} from "element-plus";
 import {post} from "@/net/index.js";
 import router from "@/router";
+import axios from "axios";
 
 const form = reactive({
   username: '',
@@ -22,7 +23,18 @@ const login = () => {
       remember: form.remember
     }, (message) => {
       ElMessage.success(message)
-      router.push('/backend/index/overview')
+      // 判断是管理员还是普通用户
+      axios.
+            get(`/api/data/getAccountByUsername/${form.username}`
+            ).then((res) => {
+            if (res.data.message === '存在') {
+              if (res.data.data.type === 'admin') {
+                router.push('/backend/index/overview')
+              } else {
+                router.push('/home')
+              }
+            }
+          })
     })
   }
 

@@ -222,7 +222,6 @@ const options = [
     ]
   },
   {
-
     title: {
       text: "各类诈骗占比"
     },

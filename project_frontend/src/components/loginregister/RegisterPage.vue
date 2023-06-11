@@ -11,7 +11,7 @@ const form = reactive({
   password: '',
   password_repeat: '',
   email: '',
-  code: '',
+  type: 'user',
 })
 
 // 校验用户名

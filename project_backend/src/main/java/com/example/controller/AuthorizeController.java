@@ -20,8 +20,9 @@ public class AuthorizeController {
     @PostMapping("/register")
     public R registerUser(@RequestParam("username") String username,
                           @RequestParam("password") String password,
-                          @RequestParam("email") String email) {
-        if (service.validateAndRegister(username, password, email)) {
+                          @RequestParam("email") String email,
+                          @RequestParam("type") String type) {
+        if (service.validateAndRegister(username, password, email, type)) {
             return R.success("注册成功");
         } else {
             return R.error("注册失败");

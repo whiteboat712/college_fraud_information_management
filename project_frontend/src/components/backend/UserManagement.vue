@@ -14,6 +14,7 @@ const addAccount = reactive({
   username: '',
   password: '',
   email: '',
+  type: '',
 })
 
 let updateAccount = reactive({
@@ -21,13 +22,16 @@ let updateAccount = reactive({
   username: '',
   password: '',
   email: '',
+  type: '',
 })
 
 onBeforeMount(() => {
   axios
       .get("http://localhost:8080/api/data/getAllAccounts")
       .then((res) => {
+
         data.value = res.data.data
+        console.log(data)
       })
 })
 
@@ -82,6 +86,7 @@ const updateAccountSubmit = () => {
           <el-table-column prop="id" label="ID" />
           <el-table-column prop="username" label="用户名" />
           <el-table-column prop="email" label="邮箱" />
+          <el-table-column prop="type" label="类型" />
           <el-table-column fixed="right" label="操作" width="180">
             <template #header>
               <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -108,6 +113,12 @@ const updateAccountSubmit = () => {
             <el-form-item label="邮箱">
               <el-input v-model="addAccount.email" />
             </el-form-item>
+            <el-form-item label="类型">
+              <el-select v-model="addAccount.type" placeholder="请选择账户类型">
+                <el-option label="管理员" value="admin" />
+                <el-option label="普通用户" value="user" />
+              </el-select>
+            </el-form-item>
           </el-form>
           <el-button type="default">取消</el-button>
           <el-button type="primary" @click="addAccountSubmit()">提交</el-button>
@@ -122,6 +133,12 @@ const updateAccountSubmit = () => {
             </el-form-item>
             <el-form-item label="邮箱">
               <el-input v-model="updateAccount.email" />
+            </el-form-item>
+            <el-form-item label="类型">
+              <el-select v-model="updateAccount.type" placeholder="请选择账户类型">
+                <el-option label="管理员" value="admin" />
+                <el-option label="普通用户" value="user" />
+              </el-select>
             </el-form-item>
           </el-form>
           <el-button type="default">取消</el-button>

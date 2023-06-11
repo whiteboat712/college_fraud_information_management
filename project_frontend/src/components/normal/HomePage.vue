@@ -28,7 +28,6 @@ const ImageStyle = 'cover'
             </a>
           </el-carousel-item>
         </el-carousel>
-        <
       </el-col>
       <el-col :span="3">
 

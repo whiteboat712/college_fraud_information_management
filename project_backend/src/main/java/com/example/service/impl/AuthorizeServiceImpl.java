@@ -34,11 +34,11 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     }
 
     @Override
-    public boolean validateAndRegister(String username, String password, String email) {
+    public boolean validateAndRegister(String username, String password, String email, String type) {
 
         if (mapper.findAccountByNameOrEmail(username) == null && mapper.findAccountByNameOrEmail(email) == null) {
             password = encoder.encode(password);
-            if (mapper.createAccount(username, password, email) > 0) {
+            if (mapper.createAccount(username, password, email, type) > 0) {
                 return true;
             } else {
                 return false;

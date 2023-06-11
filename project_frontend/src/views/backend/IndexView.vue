@@ -10,48 +10,6 @@ import {useRouter} from "vue-router";
 
 const router = useRouter()
 
-
-
-const information = reactive({
-  id: '',
-  sid: '',
-  sname: '',
-  // scollege: '',
-  // phone: '',
-  // type: '',
-  // amount: '',
-  // fraudtime: '',
-  // time: '',
-})
-
-
-
-const getInformation = () => {
-  axios
-      .get("http://localhost:8080/api/data")
-      .then((res) => {
-        information.id = res.data.data.id
-        console.log(res)
-        console.log(res.data.data.id)
-        console.log(res.data.data.sid)
-        information.sid = res.data.data.sid
-        information.sname = res.data.data.sname
-      })
-  // informationApi.informationApi({
-  //
-  // }).then(res => {
-  //   console.log(res)
-  //   ElMessage.info(res.message);
-  //   information.id = res.data.id;
-  //   information.sid = res.data.sid;
-  //   information.sname = res.data.sname;
-  // }).catch(error => {
-  //   console.log(error);
-  // })
-}
-
-
-
 </script>
 
 <template>
