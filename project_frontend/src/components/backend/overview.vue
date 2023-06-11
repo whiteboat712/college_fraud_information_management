@@ -22,8 +22,7 @@
          </el-col>
          <el-col :span="6">
            <el-card class="Card" shadow="hover" style="height: 25vh">
-             <el-text type="primary">用户数</el-text>
-<!--             <div id="informationcount" style="height: 25vh;"></div>-->
+             <div id="accountcount" style="height: 25vh;"></div>
            </el-card>
          </el-col>
        </el-row>
@@ -88,10 +87,15 @@ const until = reactive([
   {
     url: "http://localhost:8080/api/data/getallinformation",
     dom: "proportion"
+  },
+  {
+    url: "http://localhost:8080/api/data/getAllAccountsCount",
+    dom: "accountcount",
   }
 ])
 const options = [
   {
+    color: '#ec8aa4',
     grid: {show:'true',borderWidth:'0'},
     title: {
       text: "总受骗人数"
@@ -156,6 +160,7 @@ const options = [
 
   },
   {
+    color: ['#fbda41'],
     grid: {show:'true',borderWidth:'0'},
     title: {
       text: "总诈骗案例数"
@@ -189,6 +194,7 @@ const options = [
     ],
   },
   {
+    color: '#57c3c2',
     title: {
       text: "趋势图",
     },
@@ -216,6 +222,7 @@ const options = [
     ]
   },
   {
+
     title: {
       text: "各类诈骗占比"
     },
@@ -251,7 +258,40 @@ const options = [
       },
       data: [],
     }]
-  }
+  },
+  {
+    color: ['#80FFA5'],
+    grid: {show:'true',borderWidth:'0'},
+    title: {
+      text: "用户数"
+    },
+    tooltip: {},
+    xAxis: {
+      data: [" "],
+      splitLine: {
+        show: false,
+      },
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: {
+        show: false,
+      },
+    },
+    series: [{
+      name: "用户数",
+      type: "bar",
+      barWidth: '70%',
+      barBorderRadius: 10,
+      data: [],
+      label: {
+        show: true,
+        position: 'bottom',
+        valueAnimation: true
+      }
+    }, ],
+
+  },
 ]
 
 // 数据处理函数

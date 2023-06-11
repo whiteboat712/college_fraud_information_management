@@ -1,10 +1,9 @@
 <script setup>
-import {ref} from "vue";
 import {get} from "@/net";
 import {ElMessage} from "element-plus";
 import router from "@/router";
 
-const darkmode = ref(false)
+
 
 const logout = () => {
   get('/api/auth/logout', (message) => {
@@ -23,7 +22,6 @@ const logout = () => {
       </el-col>
       <el-col :span="3">
         <div>
-          <el-switch v-model="darkmode" />
           <el-dropdown @command="handleCommand">
             <span>
               <el-avatar

@@ -54,9 +54,7 @@ const addInformationSubmit = () => {
 const deleteInformationSubmit = (row) => {
   // console.log(row.id)
   axios
-      .post("http://localhost:8080/api/data/deleteInformation", {
-        id: '' + row.id,
-      }).then((res) => {
+      .post("http://localhost:8080/api/data/deleteInformation", row).then((res) => {
           ElMessage.info(res.message)
       })
 }
@@ -66,7 +64,7 @@ const openUpdatePage = (index) => {
   updateId.value = data.value[index].id
   updateInformation = data.value[index]
 }
-const updateInformationSubmit = (row) => {
+const updateInformationSubmit = () => {
   axios
       .post("http://localhost:8080/api/data/updateInformation", updateInformation)
       .then((res) => {

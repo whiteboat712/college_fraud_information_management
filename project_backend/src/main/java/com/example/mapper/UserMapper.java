@@ -4,6 +4,8 @@ package com.example.mapper;
 import com.example.entity.Account;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
@@ -15,10 +17,16 @@ public interface UserMapper {
     @Select("select * from db_account where username = #{text} or email = #{text}")
     Account findAccountByNameOrEmail(String text);
 
+    @Select("select * from db_account")
+    List<Account>getAllAccounts();
+
+    @Select("select count(*) from db_account")
+    Long getAccountsCount();
+
     @Delete("delete from db_account where id = #{id}")
-    void deleteAccount(String id);
+    void deleteAccount(int id);
 
     @Update("update db_account set username = #{username}, password = #{password}, email = #{email} where id = #{id}")
-    boolean updateAccount(String id, String username, String password, String email);
+    void updateAccount(int id, String username, String password, String email);
 
 }

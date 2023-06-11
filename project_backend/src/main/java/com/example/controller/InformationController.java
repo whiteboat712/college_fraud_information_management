@@ -41,10 +41,12 @@ public class InformationController {
         return R.success("成功提交");
     }
 
+
     @RequestMapping(value = "/deleteInformation", method = RequestMethod.POST)
-    public R deleteInformation(@RequestParam("id") String id) {
-        System.out.println(id);
-        informationMapper.deleteFraudInformation(Integer.parseInt(id));
+    public R deleteInformation(@RequestBody FraudInformation f) {
+        // 在这里处理请求，执行相应的逻辑
+        System.out.println(f);
+        informationMapper.deleteFraudInformation(f.getId());
         return R.success("删除成功");
     }
 

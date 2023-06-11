@@ -29,11 +29,11 @@ public interface InformationMapper {
     @Select("select sum(amount) from fraud_information")
     Double getFraudAmount();
 
-    @Delete("delete from fraud_information where id = #{id}")
+    @Delete("delete from fraud_information where id=#{id}")
     void deleteFraudInformation(int id);
 
     @Update("update fraud_information set sid=#{sid}, sname=#{sname}, scollege=#{scollege}, " +
-            "phone=#{phone}, type=#{type}, amount=#{amount}, fraudTime=#{fraudTime}, time=#{time} where id = #{id}")
+            "phone=#{phone}, type=#{type}, amount=#{amount}, fraudtime=#{fraudTime}, time=#{time} where id = #{id}")
     boolean updateFraudInformation(int id,
                                    String sid,
                                    String sname,
