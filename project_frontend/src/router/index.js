@@ -23,7 +23,19 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('@/views/normal/HomeView.vue')
+      component: () => import('@/views/normal/HomeView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('@/components/normal/HomePage.vue')
+        },
+        {
+          path: 'add-information',
+          name: '添加信息',
+          component: () => import('@/components/normal/AddPage.vue')
+        },
+      ]
     },
     {
       path: '/backend/index',
