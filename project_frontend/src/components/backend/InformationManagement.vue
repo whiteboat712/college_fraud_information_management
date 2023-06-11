@@ -1,11 +1,26 @@
 <script setup>
 import {onBeforeMount, reactive, ref} from "vue";
 import axios from "axios";
+import {ElMessage} from "element-plus";
 
 const data = reactive([])
 const addPageOpen = ref(false)
+const updatePageOpen = ref(false)
+const updateId = ref()
 
 const addInformation = reactive({
+  id: '',
+  sname: '',
+  sid: '',
+  scollege: '',
+  phone: '',
+  type: '',
+  amount: '',
+  fraudTime: '',
+  time: '',
+})
+
+let updateInformation = reactive({
   id: '',
   sname: '',
   sid: '',
@@ -27,14 +42,37 @@ onBeforeMount(() => {
       })
 })
 
+// 添加诈骗信息
 const addInformationSubmit = () => {
   axios
       .post("http://localhost:8080/api/data/addInformation", addInformation)
       .then((res) => {
-        console.log(res.data.data)
-        console.log(data)
         data.value = res.data.data
       })
+}
+
+const deleteInformationSubmit = (row) => {
+  // console.log(row.id)
+  axios
+      .post("http://localhost:8080/api/data/deleteInformation", {
+        id: '' + row.id,
+      }).then((res) => {
+          ElMessage.info(res.message)
+      })
+}
+const openUpdatePage = (index) => {
+  updatePageOpen.value = true
+  console.log(data)
+  updateId.value = data.value[index].id
+  updateInformation = data.value[index]
+}
+const updateInformationSubmit = (row) => {
+  axios
+      .post("http://localhost:8080/api/data/updateInformation", updateInformation)
+      .then((res) => {
+        data.value = res.data.data
+      })
+  updatePageOpen.value = false
 }
 
 // const search = ref('')
@@ -68,10 +106,10 @@ const addInformationSubmit = () => {
               <el-input v-model="search" size="small" placeholder="Type to search" />
             </template>
             <template #default="scope">
-              <el-button size="large" @click="handleEdit(scope.$index, scope.row)"
+              <el-button size="large" @click="openUpdatePage(scope.$index)"
               >Edit
               </el-button>
-              <el-button type="danger" size="large">
+              <el-button @click="deleteInformationSubmit(scope.row)" type="danger" size="large">
                 删除
               </el-button>
             </template>
@@ -115,6 +153,44 @@ const addInformationSubmit = () => {
 
           <el-button type="default">取消</el-button>
           <el-button type="primary" @click="addInformationSubmit()">提交</el-button>
+        </el-dialog>
+        <el-dialog v-model="updatePageOpen" title="编辑诈骗信息" width="50vw">
+          <el-form :model="updateInformation" label-width="80px">
+            <el-form-item label="ID">
+              <el-input v-model="updateInformation.id" />
+            </el-form-item>
+            <el-form-item label="姓名">
+              <el-input v-model="updateInformation.sname" />
+            </el-form-item>
+            <el-form-item label="学号">
+              <el-input v-model="updateInformation.sid" />
+            </el-form-item>
+            <el-form-item label="学院">
+              <el-select v-model="updateInformation.scollege" placeholder="请选择你的学院">
+                <el-option label="人工智能与大数据学院" value="人工智能与大数据学院" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="电话">
+              <el-input v-model="updateInformation.phone" />
+            </el-form-item>
+            <el-form-item label="类型">
+              <el-select v-model="updateInformation.type" placeholder="请选择诈骗类型">
+                <el-option label="电信诈骗" value="电信诈骗" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="受骗时间">
+              <el-date-picker type="datetime" v-model="updateInformation.fraudTime" placeholder="选择时间" />
+            </el-form-item>
+            <el-form-item label="提交时间">
+              <el-date-picker type="datetime" v-model="updateInformation.time" placeholder="选择时间" />
+            </el-form-item>
+            <el-form-item label="损失金额">
+              <el-input-number v-model="updateInformation.amount" :precision="2" />
+            </el-form-item>
+          </el-form>
+
+          <el-button type="default">取消</el-button>
+          <el-button type="primary" @click="updateInformationSubmit()">提交</el-button>
         </el-dialog>
       </el-col>
     </el-row>

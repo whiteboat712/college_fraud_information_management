@@ -17,7 +17,7 @@ const logout = () => {
 
 <template>
   <div>
-    <el-row :gutter="20">
+    <el-row :gutter="20" align="middle">
       <el-col :span="21">
         <h1>高校诈骗信息管理系统后台</h1>
       </el-col>

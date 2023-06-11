@@ -31,7 +31,7 @@ const login = () => {
 </script>
 
 <template>
-  <div style="text-align: center; margin-top: 150px; padding: 0 35px 0 35px">
+  <div v-show="true" style="text-align: center; margin-top: 150px; padding: 0 35px 0 35px">
     <div style="font-size: 30px; color: white">高校诈骗信息管理系统</div>
     <div style="font-size: 14px; color: white; margin-top: 20px">在进入系统之前请输入用户名和密码</div>
     <div style="margin-top: 30px">
@@ -60,7 +60,7 @@ const login = () => {
       <el-button @click="login()" style="width: 200px" type="success" plain>登录</el-button>
     </div>
     <div style="margin-top: 10px">
-      <el-button style="width: 200px" type="warning" plain>注册账号</el-button>
+      <el-button @click="router.push('/register')" style="width: 200px" type="warning" plain>注册账号</el-button>
     </div>
   </div>
 </template>
