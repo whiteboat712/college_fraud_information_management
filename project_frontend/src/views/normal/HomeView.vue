@@ -6,7 +6,7 @@ import Navition from "@/components/normal/Navition.vue";
 <template>
   <div>
     <el-container>
-      <el-header>
+      <el-header style="padding: 0">
         <Navition />
       </el-header>
       <el-main style="background-color: #F1F2F5">

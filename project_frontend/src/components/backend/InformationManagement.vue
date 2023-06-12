@@ -18,6 +18,7 @@ const addInformation = reactive({
   amount: '',
   fraudTime: '',
   time: '',
+  description: '',
 })
 
 let updateInformation = reactive({
@@ -30,6 +31,7 @@ let updateInformation = reactive({
   amount: '',
   fraudTime: '',
   time: '',
+  description: '',
 })
 
 onBeforeMount(() => {

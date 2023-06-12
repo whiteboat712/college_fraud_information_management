@@ -15,8 +15,8 @@ public interface InformationMapper {
     @Select("select * from fraud_information")
     List<FraudInformation> getAllFraudInformation();
 
-    @Insert("insert into fraud_information(id,sid,sname,scollege,phone,type,amount,fraudTime,time)"
-            + " values(#{id},#{sid},#{sname},#{scollege},#{phone},#{type},#{amount},#{fraudTime},#{time})")
+    @Insert("insert into fraud_information(id,sid,sname,scollege,phone,type,amount,fraudTime,time,description)"
+            + " values(#{id},#{sid},#{sname},#{scollege},#{phone},#{type},#{amount},#{fraudTime},#{time},#{description})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void addFraudInformation(FraudInformation fraudInformation);
 
@@ -33,7 +33,7 @@ public interface InformationMapper {
     void deleteFraudInformation(int id);
 
     @Update("update fraud_information set sid=#{sid}, sname=#{sname}, scollege=#{scollege}, " +
-            "phone=#{phone}, type=#{type}, amount=#{amount}, fraudtime=#{fraudTime}, time=#{time} where id = #{id}")
+            "phone=#{phone}, type=#{type}, amount=#{amount}, fraudtime=#{fraudTime}, time=#{time}, description=#{description} where id = #{id}")
     boolean updateFraudInformation(int id,
                                    String sid,
                                    String sname,
@@ -42,6 +42,7 @@ public interface InformationMapper {
                                    String type,
                                    Double amount,
                                    Timestamp fraudTime,
-                                   Timestamp time);
+                                   Timestamp time,
+                                   String description);
 
 }

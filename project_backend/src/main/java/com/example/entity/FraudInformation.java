@@ -16,4 +16,5 @@ public class FraudInformation {
     Double amount;
     Timestamp fraudTime;
     Timestamp time;
+    String description;
 }

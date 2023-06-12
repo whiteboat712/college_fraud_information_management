@@ -62,7 +62,8 @@ public class InformationController {
                 fraudInformation.getType(),
                 fraudInformation.getAmount(),
                 fraudInformation.getFraudTime(),
-                fraudInformation.getTime());
+                fraudInformation.getTime(),
+                fraudInformation.getDescription());
         return R.success("更新成功");
     }
 
