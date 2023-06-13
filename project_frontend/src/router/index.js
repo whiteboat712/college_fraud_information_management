@@ -35,6 +35,11 @@ const router = createRouter({
           name: '添加信息',
           component: () => import('@/components/normal/AddPage.vue')
         },
+        {
+          path: 'profile',
+          name: '个人信息',
+          component: () => import('@/components/normal/ProFile.vue')
+        },
       ]
     },
     {

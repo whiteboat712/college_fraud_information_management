@@ -7,6 +7,12 @@ import router from "@/router";
 
 const logout = () => {
   get('/api/auth/logout', (message) => {
+    this.$state.commit('changeUser', {
+      id: '',
+      username: '',
+      password: '',
+      email: '',
+      type: '',})
     ElMessage.success(message)
     router.push('/')
   })

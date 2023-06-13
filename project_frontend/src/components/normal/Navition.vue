@@ -30,7 +30,7 @@ const userName = ref('User')
               size="large"
           />
         </el-menu-item>
-        <el-menu-item>
+        <el-menu-item index="/home/profile">
           <el-icon><User /></el-icon>
           <el-text>Username</el-text>
         </el-menu-item>

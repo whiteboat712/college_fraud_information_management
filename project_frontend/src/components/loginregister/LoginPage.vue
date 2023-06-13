@@ -28,6 +28,7 @@ const login = () => {
             get(`/api/data/getAccountByUsername/${form.username}`
             ).then((res) => {
             if (res.data.message === '存在') {
+              this.$state.commit('changeUser', res.data.data)
               if (res.data.data.type === 'admin') {
                 router.push('/backend/index/overview')
               } else {

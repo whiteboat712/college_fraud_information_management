@@ -1,12 +1,7 @@
 <script setup>
 
-import BatchAdd from "@/components/normal/BatchAdd.vue";
 import SingleAdd from "@/components/normal/SingleAdd.vue";
-import {ref} from "vue";
-const Select = ref('single')
-
-
-
+import BatchAdd from "@/components/normal/BatchAdd.vue";
 </script>
 
 <template>
@@ -14,7 +9,7 @@ const Select = ref('single')
     <el-row>
       <el-col :span="3"></el-col>
       <el-col :span="18">
-        <h1 style="font-size: 36px">提交信息</h1>
+        <h1 style="font-size: 36px">个人信息</h1>
         <el-tabs tab-position="left" v-model="Select" class="demo-tabs" @tab-click="handleClick">
           <el-tab-pane label="单个提交" name="single">
             <SingleAdd />
@@ -30,8 +25,5 @@ const Select = ref('single')
 </template>
 
 <style scoped>
-:deep(.el-tabs__item) {
-  font-size: 20px;
-  font-weight: bold;
-}
+
 </style>
