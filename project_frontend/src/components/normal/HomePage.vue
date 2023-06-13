@@ -6,7 +6,7 @@ const ImageStyle = 'cover'
 
 <template>
   <div>
-    <el-row>
+    <el-row >
       <el-col :span="3">
 
       </el-col>

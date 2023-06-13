@@ -15,10 +15,17 @@ public interface InformationMapper {
     @Select("select * from fraud_information")
     List<FraudInformation> getAllFraudInformation();
 
-    @Insert("insert into fraud_information(id,sid,sname,scollege,phone,type,amount,fraudTime,time,description)"
-            + " values(#{id},#{sid},#{sname},#{scollege},#{phone},#{type},#{amount},#{fraudTime},#{time},#{description})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    void addFraudInformation(FraudInformation fraudInformation);
+    @Insert("insert into fraud_information(sid, sname, scollege, phone, type, amount, fraudTime, time, description)"
+            + " values(#{sid}, #{sname}, #{scollege}, #{phone}, #{type}, #{amount}, #{fraudTime}, #{time}, #{description})")
+    void addFraudInformation(String sid,
+                             String sname,
+                             String scollege,
+                             String phone,
+                             String type,
+                             Double amount,
+                             Timestamp fraudTime,
+                             Timestamp time,
+                             String description);
 
     @Select("select count(*) from fraud_information")
     Long getInformationCount();

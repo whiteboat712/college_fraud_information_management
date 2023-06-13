@@ -37,7 +37,16 @@ public class InformationController {
     @RequestMapping(value = "/addInformation", method = RequestMethod.POST)
     public R addInformation(@RequestBody FraudInformation fraudInformation) {
 //        System.out.println(fraudInformation);
-        informationMapper.addFraudInformation(fraudInformation);
+        informationMapper.addFraudInformation(
+                fraudInformation.getSid(),
+                fraudInformation.getSname(),
+                fraudInformation.getScollege(),
+                fraudInformation.getPhone(),
+                fraudInformation.getType(),
+                fraudInformation.getAmount(),
+                fraudInformation.getFraudTime(),
+                fraudInformation.getTime(),
+                fraudInformation.getDescription());
         return R.success("成功提交");
     }
 

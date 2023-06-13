@@ -9,7 +9,7 @@ import Navition from "@/components/normal/Navition.vue";
       <el-header style="padding: 0">
         <Navition />
       </el-header>
-      <el-main style="background-color: #F1F2F5">
+      <el-main style="height: calc(100vh - 60px); padding: 30px 0 0 0; background-color: #F1F2F5">
         <router-view/>
       </el-main>
     </el-container>

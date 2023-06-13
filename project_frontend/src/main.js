@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import store from "./stores/store";
 // 导入elementplus css
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -21,5 +22,6 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(store)
 app.config.globalProperties.echarts = echarts;
 app.mount('#app')

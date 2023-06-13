@@ -9,8 +9,9 @@ const Select = ref('single')
 <template>
   <div>
     <el-row>
-      <el-col :span="2"></el-col>
-      <el-col :span="20">
+      <el-col :span="3"></el-col>
+      <el-col :span="18">
+        <h1 style="font-size: 40px">提交信息</h1>
         <el-tabs tab-position="left" v-model="Select" class="demo-tabs" @tab-click="handleClick">
           <el-tab-pane label="单个提交" name="single">
             <SingleAdd />
@@ -20,11 +21,14 @@ const Select = ref('single')
           </el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :span="2"></el-col>
+      <el-col :span="3"></el-col>
     </el-row>
   </div>
 </template>
 
 <style scoped>
-
+:deep(.el-tabs__item) {
+  font-size: 20px;
+  font-weight: bold;
+}
 </style>

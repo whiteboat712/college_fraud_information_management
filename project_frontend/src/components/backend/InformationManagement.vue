@@ -118,9 +118,6 @@ const updateInformationSubmit = () => {
         <el-button style="width: 100%" @click="addPageOpen = true">Add Item</el-button>
         <el-dialog v-model="addPageOpen" title="添加诈骗信息" width="50vw">
           <el-form :model="addInformation" label-width="80px">
-            <el-form-item label="ID">
-              <el-input v-model="addInformation.id" />
-            </el-form-item>
             <el-form-item label="姓名">
               <el-input v-model="addInformation.sname" />
             </el-form-item>
