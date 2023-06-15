@@ -1,10 +1,10 @@
 <script setup>
 
-import {Avatar, User} from "@element-plus/icons-vue";
+import {User} from "@element-plus/icons-vue";
 import {ref} from "vue";
+import store from "../../stores/store";
 
 const isDark = ref()
-const userName = ref('User')
 </script>
 
 
@@ -32,7 +32,7 @@ const userName = ref('User')
         </el-menu-item>
         <el-menu-item index="/home/profile">
           <el-icon><User /></el-icon>
-          <el-text>Username</el-text>
+          <el-text>{{store.state.user.username}}</el-text>
         </el-menu-item>
 
       </el-menu>
@@ -45,14 +45,5 @@ const userName = ref('User')
     height: 60px; /* 根据您的需求设置高度 */
     width: 100%;
     background-color: #f5f7fa; /* 根据您的需求设置背景颜色 */
-  }
-
-  .navbar-items {
-    display: flex;
-    align-items: center;
-  }
-
-  .navbar-menu {
-    border: none;
   }
 </style>

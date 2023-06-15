@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from "@/stores/store";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
           component: () => import('@/components/loginregister/RegisterPage.vue'),
         }
       ]
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: () => import('@/views/Error.vue')
     },
     {
       path: '/home',
@@ -66,11 +72,37 @@ const router = createRouter({
           path: 'usermanagement',
           name: 'user-management',
           component: () => import('@/components/backend/UserManagement.vue'),
+        },
+        {
+          path: 'profile',
+          name: 'backend-profile',
+          component: () => import('@/components/normal/ProFile.vue'),
         }
       ]
 
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  store.commit('loadUser')
+  if (store.state.user.type !== 'user' && store.state.user.type !== 'admin') {
+    if (to.name !== 'error' && to.name !== 'login' && to.name !== 'register') {
+      next({path: '/error'})
+    }
+    next()
+  } else {
+    if (store.state.user.type === 'admin') {
+      next()
+    } else if (store.state.user.type === 'user') {
+      if (to.name === 'backend-index') {
+        next({path: '/error'})
+      }
+      next()
+    } else {
+      next({path: '/error'})
+    }
+  }
 })
 
 export default router

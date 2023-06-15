@@ -12,7 +12,7 @@ const AddForm = reactive({
   scollege: '',
   phone: '',
   type: '',
-  amount: '',
+  amount: 0,
   fraudTime: '',
   time: '',
   description: '',

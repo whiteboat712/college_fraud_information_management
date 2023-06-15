@@ -15,7 +15,7 @@ const Select = ref('single')
       <el-col :span="3"></el-col>
       <el-col :span="18">
         <h1 style="font-size: 36px">提交信息</h1>
-        <el-tabs tab-position="left" v-model="Select" class="demo-tabs" @tab-click="handleClick">
+        <el-tabs tab-position="left" v-model="Select" class="demo-tabs">
           <el-tab-pane label="单个提交" name="single">
             <SingleAdd />
           </el-tab-pane>

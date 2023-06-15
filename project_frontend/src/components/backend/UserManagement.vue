@@ -31,7 +31,7 @@ onBeforeMount(() => {
       .then((res) => {
 
         data.value = res.data.data
-        console.log(data)
+        // console.log(data)
       })
 })
 
@@ -54,7 +54,7 @@ const deleteAccountSubmit = (row) => {
 }
 const openUpdatePage = (index) => {
   updatePageOpen.value = true
-  console.log(data)
+  // console.log(data)
   updateId.value = data.value[index].id
   updateAccount = data.value[index]
 }
@@ -86,7 +86,15 @@ const updateAccountSubmit = () => {
           <el-table-column prop="id" label="ID" />
           <el-table-column prop="username" label="用户名" />
           <el-table-column prop="email" label="邮箱" />
-          <el-table-column prop="type" label="类型" />
+          <el-table-column prop="type" label="类型" >
+            <template #default="scope">
+              <el-tag
+                  :type="scope.row.type === 'user' ? '' : 'success'"
+                  disable-transitions
+              >{{ scope.row.type }}</el-tag
+              >
+            </template>
+          </el-table-column>
           <el-table-column fixed="right" label="操作" width="180">
             <template #header>
               <el-input v-model="search" size="small" placeholder="Type to search" />

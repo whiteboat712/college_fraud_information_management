@@ -23,7 +23,7 @@ public class AccountController {
 
     @RequestMapping(value = "/getAccountByUsername/{username}", method = RequestMethod.GET)
     public R getAccountByUsername(@PathVariable("username") String username) {
-        System.out.println(username);
+//        System.out.println(username);
         try {
             Account account = accountMapper.findAccountByNameOrEmail(username);
             return R.success("存在", account);

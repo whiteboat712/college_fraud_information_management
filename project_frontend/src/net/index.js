@@ -20,7 +20,7 @@ function post(url, data, success, failure = defaultFailure, error = defaultError
 
 function get(url, success, failure = defaultFailure, error = defaultError) {
     axios.get(url, {
-        withCredentials: true,
+        withCredentials: false,
     }).then(({data}) => {
         if (data.success)
             success(data.message, data.status);

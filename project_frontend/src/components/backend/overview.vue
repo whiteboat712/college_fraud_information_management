@@ -26,15 +26,15 @@
            </el-card>
          </el-col>
        </el-row>
-       <el-row :gutter="20" style="margin-top: 30px">
+       <el-row :gutter="20" style="margin-top: 30px;">
          <el-col :span="16">
-           <el-card class="Card" shadow="hover" style="height: 25vh">
-             <div id="trend" style="height: 25vh;"></div>
+           <el-card class="Card" shadow="hover" style="height: 35vh">
+             <div id="trend" style="height: 35vh;"></div>
            </el-card>
          </el-col>
          <el-col :span="8">
-           <el-card class="Card" shadow="hover" style="height: 25vh">
-             <div id="proportion" style="height: 25vh;"></div>
+           <el-card class="Card" shadow="hover" style="height: 35vh">
+             <div id="proportion" style="height: 30vh;"></div>
            </el-card>
          </el-col>
        </el-row>
@@ -49,24 +49,6 @@ import * as echarts from 'echarts'
 import axios from "axios";
 import {onMounted, reactive, ref} from "vue";
 
-
-// const peoplecount = reactive({
-//   title: {
-//     text: 'ECharts 入门示例'
-//   },
-//   tooltip: {},
-//   xAxis: {
-//     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-//   },
-//   yAxis: {},
-//   series: [
-//     {
-//       name: '销量',
-//       type: 'bar',
-//       data: [5, 20, 36, 10, 10, 20]
-//     }
-//   ]
-// })
 const until = reactive([
   {
     url: 'http://localhost:8080/api/data/getdifferentpersoncount',
@@ -121,7 +103,7 @@ const options = [
       data: [],
       label: {
         show: true,
-        position: 'bottom',
+        position: 'top',
         valueAnimation: true
       }
     }, ],
@@ -153,7 +135,7 @@ const options = [
       data: [],
       label: {
         show: true,
-        position: 'bottom',
+        position: 'top',
         valueAnimation: true
       }
     }, ],
@@ -187,7 +169,7 @@ const options = [
         data: [],
         label: {
           show: true,
-          position: 'bottom',
+          position: 'top',
           valueAnimation: true
         }
       },
@@ -229,7 +211,8 @@ const options = [
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: 'bottom',
+
       left: 'center'
     },
     series: [{
@@ -285,7 +268,7 @@ const options = [
       data: [],
       label: {
         show: true,
-        position: 'bottom',
+        position: 'top',
         valueAnimation: true
       }
     }, ],
@@ -376,12 +359,12 @@ const initChart = () => {
             // console.log(data)
             option.xAxis[0].data = data.categories
             option.series[0].data = data.values
-            console.log(option)
+            // console.log(option)
             chart[item].setOption(option);
           } else if (item === '4') {
             let option = chart[item].getOption()
             let data = processTypeData(res.data.data)
-            console.log(data)
+            // console.log(data)
             option.series[0].data = data
             chart[item].setOption(option);
           } else {

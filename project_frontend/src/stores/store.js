@@ -1,4 +1,4 @@
-
+import VuexPersistence from 'vuex-persistedstate'
 import { createStore } from 'vuex';
 
 const store = createStore({
@@ -46,10 +46,19 @@ const store = createStore({
         }
     },
     mutations: {
-        changeUser (user, update) {
-            user = update
+        changeUser (state, update) {
+            state.user = update
+            sessionStorage.setItem('user', JSON.stringify(update));
+        },
+        loadUser(state) {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            // console.log(user);
+            if (user) {
+                state.user = user;
+            }
         }
     }
 })
+
 
 export default store
