@@ -17,6 +17,9 @@ public interface UserMapper {
     @Select("select * from db_account where username = #{text} or email = #{text}")
     Account findAccountByNameOrEmail(String text);
 
+    @Select("select * from db_account where id = #{id}")
+    Account findAccountById(int id);
+
     @Select("select * from db_account")
     List<Account>getAllAccounts();
 

@@ -21,7 +21,7 @@ const isDark = ref()
       >
         <el-text type="primary" size="large">高校诈骗信息管理系统后台</el-text>
         <div style="width: 70%"></div>
-        <el-menu-item index="/home/profile">
+        <el-menu-item index="/backend/index/profile">
           <el-icon><User /></el-icon>
           <el-text>{{store.state.user.username}}</el-text>
         </el-menu-item>

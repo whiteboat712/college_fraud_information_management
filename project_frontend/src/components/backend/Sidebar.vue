@@ -29,7 +29,6 @@ const changePage = (url) => {
       </template>
       <el-menu-item index="1-1" @click="changePage('overview')">概览</el-menu-item>
       <el-menu-item index="1-2" @click="changePage('analysis')">数据分析</el-menu-item>
-      <el-menu-item index="1-3">诈骗信息列表</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
@@ -38,6 +37,7 @@ const changePage = (url) => {
       </template>
       <el-menu-item index="2-1" @click="changePage('informationmanagement')">信息管理</el-menu-item>
       <el-menu-item index="2-2" @click="changePage('usermanagement')">用户管理</el-menu-item>
+      <el-menu-item index="2-3" @click="change()"
     </el-sub-menu>
     <el-menu-item index="3">
       <el-icon><setting /></el-icon>
