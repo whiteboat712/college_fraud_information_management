@@ -74,6 +74,11 @@ const router = createRouter({
           component: () => import('@/components/backend/UserManagement.vue'),
         },
         {
+          path: 'batchAdd',
+          name: 'batch-add',
+          component: () => import('@/components/backend/BatchAddPage.vue')
+        },
+        {
           path: 'profile',
           name: 'backend-profile',
           component: () => import('@/components/normal/ProFile.vue'),

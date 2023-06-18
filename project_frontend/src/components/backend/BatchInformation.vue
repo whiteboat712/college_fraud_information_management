@@ -8,15 +8,10 @@ import {UploadFilled} from "@element-plus/icons-vue";
 
 const AddForm = reactive({
   id: '',
-  sname: '',
-  sid: '',
-  scollege: '',
-  phone: '',
+  username: '',
+  password: '',
+  email: '',
   type: '',
-  amount: 0,
-  fraudTime: '',
-  time: '',
-  description: '',
 })
 
 const AddList = reactive([])
@@ -47,8 +42,8 @@ const processFile = async (file) => {
 }
 
 const submitInformation = () => {
-  axios.post('/api/data/batchAdd',
-    AddList
+  axios.post('/api/data/batchAddAccount',
+      AddList
   ).then((res) => {
     ElMessage.success(res)
   })
@@ -56,19 +51,13 @@ const submitInformation = () => {
 
 const reset = () => {
   AddForm.id = ''
-  AddForm.sname = ''
-  AddForm.sid = ''
-  AddForm.scollege = ''
-  AddForm.phone = ''
+  AddForm.username = ''
+  AddForm.password = ''
+  AddForm.email = ''
   AddForm.type = ''
-  AddForm.amount = 0
-  AddForm.fraudTime = ''
-  AddForm.time = ''
-  AddForm.description = ''
 }
-
 const add = () => {
-    AddList.push(AddForm)
+  AddList.push(AddForm)
 }
 </script>
 
@@ -76,7 +65,7 @@ const add = () => {
 
   <el-scrollbar max-height="75vh">
     <div>
-<!--      拖拽框-->
+      <!--      拖拽框-->
       <div
           style="background-color: white; border-radius: 12px; padding: 2vh 2vw;"
       >
@@ -102,7 +91,7 @@ const add = () => {
           </template>
         </el-upload>
       </div>
-<!--      列表-->
+      <!--      列表-->
       <div
           v-if="AddList.length > 0"
           style="background-color: white; border-radius: 12px; padding: 2vh 2vw; margin-top: 2vh"
@@ -112,11 +101,15 @@ const add = () => {
             <el-col :span="22">
               <el-descriptions>
                 <el-descriptions-item label="ID">{{item.id}}</el-descriptions-item>
-                <el-descriptions-item label="姓名">{{item.sname}}</el-descriptions-item>
-                <el-descriptions-item label="学号">{{item.sid}}</el-descriptions-item>
-                <el-descriptions-item label="学院">{{item.scollege}}</el-descriptions-item>
-                <el-descriptions-item label="金额">{{item.amount}}</el-descriptions-item>
-                <el-descriptions-item label="类型"><el-tag>{{item.type}}</el-tag></el-descriptions-item>
+                <el-descriptions-item label="用户名">{{item.username}}</el-descriptions-item>
+                <el-descriptions-item label="密码">{{item.password}}</el-descriptions-item>
+                <el-descriptions-item label="邮箱">{{item.email}}</el-descriptions-item>
+                <el-descriptions-item label="类型">
+                  <el-tag :type="item.type === 'user' ? '' : 'success'"
+                          disable-transitions>
+                    {{item.type}}
+                  </el-tag>
+                </el-descriptions-item>
               </el-descriptions>
             </el-col>
             <el-col :span="2">
@@ -126,49 +119,6 @@ const add = () => {
 
         </el-card>
         <el-button type="success" @click="submitInformation">上传</el-button>
-      </div>
-
-      <div
-          style="margin-top: 3vh; background-color: white; border-radius: 12px; padding: 2vh 2vw;"
-      >
-
-        <el-row justify="center">
-          <el-form :model="AddForm" label-width="120px" >
-            <el-form-item label="受骗人姓名">
-              <el-input v-model="AddForm.sname" />
-            </el-form-item>
-            <el-form-item label="学号">
-              <el-input v-model="AddForm.sid" />
-            </el-form-item>
-            <el-form-item label="学院">
-              <el-select v-model="AddForm.scollege" placeholder="请选择你的学院" >
-                <el-option v-for="col in store.state.colleges" :label="col" :value="col" />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="电话">
-              <el-input v-model="AddForm.phone" />
-            </el-form-item>
-            <el-form-item label="诈骗类型">
-              <el-select v-model="AddForm.type" placeholder="请选择诈骗类型">
-                <el-option v-for="col in store.state.types" :label="col" :value="col" />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="受骗时间">
-              <el-date-picker type="datetime" v-model="AddForm.fraudTime" placeholder="选择时间" />
-            </el-form-item>
-            <el-form-item label="提交时间">
-              <el-date-picker type="datetime" v-model="AddForm.time" placeholder="选择时间" />
-            </el-form-item>
-            <el-form-item label="损失金额">
-              <el-input-number v-model="AddForm.amount" :precision="2" />
-            </el-form-item>
-          </el-form>
-        </el-row>
-        <el-row justify="center">
-          <el-button type="default" @click="reset">重置</el-button>
-          <el-button type="primary" @click="add">提交</el-button>
-        </el-row>
-
       </div>
     </div>
   </el-scrollbar>

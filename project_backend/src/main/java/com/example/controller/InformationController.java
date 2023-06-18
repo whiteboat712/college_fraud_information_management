@@ -7,6 +7,9 @@ import com.example.mapper.UserMapper;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/data")
 public class InformationController {
@@ -50,6 +53,24 @@ public class InformationController {
         return R.success("成功提交");
     }
 
+    @RequestMapping(value = "/batchAdd", method = RequestMethod.POST)
+    public R batchAdd(@RequestBody List<FraudInformation> AddList ) {
+        System.out.println(AddList);
+        for (FraudInformation fraudInformation : AddList) {
+            informationMapper.addFraudInformation(
+                    fraudInformation.getSid(),
+                    fraudInformation.getSname(),
+                    fraudInformation.getScollege(),
+                    fraudInformation.getPhone(),
+                    fraudInformation.getType(),
+                    fraudInformation.getAmount(),
+                    fraudInformation.getFraudTime(),
+                    fraudInformation.getTime(),
+                    fraudInformation.getDescription()
+            );
+        }
+        return R.success("添加成功");
+    }
 
     @RequestMapping(value = "/deleteInformation", method = RequestMethod.POST)
     public R deleteInformation(@RequestBody FraudInformation f) {

@@ -3,10 +3,13 @@ package com.example.controller;
 
 import com.example.common.R;
 import com.example.entity.Account;
+import com.example.entity.FraudInformation;
 import com.example.mapper.UserMapper;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/data")
@@ -53,5 +56,18 @@ public class AccountController {
     public R addAccount(@RequestBody Account account)  {
         accountMapper.createAccount(account.getUsername(), encoder.encode(account.getPassword()), account.getEmail(), account.getType());
         return R.success("添加账户成功");
+    }
+
+    @RequestMapping(value = "batchAddAccount", method = RequestMethod.POST)
+    public R batchAddAccount(@RequestBody List<Account> accounts) {
+        for (Account account : accounts) {
+            accountMapper.createAccount(
+                    account.getUsername(),
+                    encoder.encode(account.getPassword()),
+                    account.getEmail(),
+                    account.getType()
+            );
+        }
+        return R.success("添加成功");
     }
 }
