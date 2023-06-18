@@ -59,11 +59,6 @@ const router = createRouter({
           component: () => import('@/components/backend/overview.vue'),
         },
         {
-          path: 'analysis',
-          name: 'data-analysis',
-          component: () => import('@/components/backend/analysis.vue'),
-        },
-        {
           path: 'informationmanagement',
           name: 'information-management',
           component: () => import('@/components/backend/InformationManagement.vue'),

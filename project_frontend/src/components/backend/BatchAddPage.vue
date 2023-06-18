@@ -3,7 +3,7 @@
 import BatchAdd from "@/components/normal/BatchAdd.vue";
 import {ref} from "vue";
 import BatchInformation from "@/components/backend/BatchInformation.vue";
-const Select = ref('single')
+const Select = ref('information')
 
 
 

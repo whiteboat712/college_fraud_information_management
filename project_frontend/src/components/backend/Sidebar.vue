@@ -22,14 +22,12 @@ const changePage = (url) => {
       on-select=""
       style="height: calc(100vh - 60px)"
   >
-    <el-sub-menu index="1">
+    <el-menu-item index="1" @click="changePage('overview')">
       <template #title>
         <el-icon><location /></el-icon>
         <span>数据中心</span>
       </template>
-      <el-menu-item index="1-1" @click="changePage('overview')">概览</el-menu-item>
-      <el-menu-item index="1-2" @click="changePage('analysis')">数据分析</el-menu-item>
-    </el-sub-menu>
+    </el-menu-item>
     <el-sub-menu index="2">
       <template #title>
         <el-icon><icon-menu /></el-icon>
@@ -39,10 +37,6 @@ const changePage = (url) => {
       <el-menu-item index="2-2" @click="changePage('usermanagement')">用户管理</el-menu-item>
       <el-menu-item index="2-3" @click="changePage('batchAdd')">批量添加</el-menu-item>
     </el-sub-menu>
-    <el-menu-item index="3">
-      <el-icon><setting /></el-icon>
-      <span>设置</span>
-    </el-menu-item>
   </el-menu>
 </template>
 

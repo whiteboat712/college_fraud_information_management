@@ -127,6 +127,7 @@ const options = [
         show: false,
       },
     },
+
     series: [{
       name: "总受骗金额",
       type: "bar",
@@ -178,7 +179,7 @@ const options = [
   {
     color: '#57c3c2',
     title: {
-      text: "趋势图",
+      text: "近期受骗金额趋势图",
     },
     xAxis: {
       type: 'category',
@@ -187,6 +188,9 @@ const options = [
     tooltip: {},
     yAxis: {
       type: 'value'
+    },
+    legend: {
+      show: true,
     },
     series: [
       {
