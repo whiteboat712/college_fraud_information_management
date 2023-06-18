@@ -1,10 +1,13 @@
 <script setup>
 
-import {onBeforeMount, reactive, ref} from "vue";
+import {computed, onBeforeMount, reactive, ref} from "vue";
 import axios from "axios";
 import {ElMessage} from "element-plus";
+import store from "@/stores/store";
 
-const data = reactive([])
+const state = reactive({
+  data: [],
+})
 const addPageOpen = ref(false)
 const updatePageOpen = ref(false)
 const updateId = ref()
@@ -25,12 +28,19 @@ let updateAccount = reactive({
   type: '',
 })
 
+const exportDataToExcel = () => {
+  let worksheet = XLSX.utils.json_to_sheet(state.data)
+  let workbook = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheep1');
+  XLSX.writeFile(workbook, 'AccountData.xlsx')
+}
+
 onBeforeMount(() => {
   axios
       .get("http://localhost:8080/api/data/getAllAccounts")
       .then((res) => {
 
-        data.value = res.data.data
+        state.data = res.data.data
         // console.log(data)
       })
 })
@@ -40,7 +50,7 @@ const addAccountSubmit = () => {
   axios
       .post("http://localhost:8080/api/data/addAccount", addAccount)
       .then((res) => {
-        data.value = res.data.data
+        state.data = res.data.data
       })
   addPageOpen.value = false;
 }
@@ -55,26 +65,37 @@ const deleteAccountSubmit = (row) => {
 const openUpdatePage = (index) => {
   updatePageOpen.value = true
   // console.log(data)
-  updateId.value = data.value[index].id
-  updateAccount = data.value[index]
+  updateId.value = state.data[index].id
+  updateAccount = state.data[index]
 }
 const updateAccountSubmit = () => {
   axios
       .post("http://localhost:8080/api/data/updateAccount", updateAccount)
       .then((res) => {
-        data.value = res.data.data
+        state.data = res.data.data
       })
   updatePageOpen.value = false
 }
 
-// const search = ref('')
-// const filterTableData = computed(() =>
-//     data.filter(
-//         (data) =>
-//             !search.value ||
-//             data.value..name.toLowerCase().includes(search.value.toLowerCase())
-//     )
-// )
+const typeFilters = store.state.types.map(x => ({
+  text: x,
+  value: x,
+}));
+
+const filterType = (value, row) => {
+  // value: 筛选输入的值
+  // row: 当前行的数据对象
+  // 返回值为布尔类型，表示是否显示该行数据
+  // 自定义筛选逻辑，这里使用严格匹配
+  return row.type === value;
+}
+
+const search = ref('')
+const filterTableData = computed(() =>
+    state.data.filter(item => {
+      return !search.value || Object.values(item).some(value => typeof value === 'string' && value.includes(search.value));
+    })
+)
 </script>
 
 <template>
@@ -82,11 +103,11 @@ const updateAccountSubmit = () => {
     <el-row justify="center">
       <el-col :span="18">
         <h1 style="font-size: 50px">用户管理</h1>
-        <el-table :data="data.value" max-height="70vh">
-          <el-table-column prop="id" label="ID" />
+        <el-table :data="filterTableData" max-height="70vh">
+          <el-table-column sortable prop="id" label="ID" />
           <el-table-column prop="username" label="用户名" />
           <el-table-column prop="email" label="邮箱" />
-          <el-table-column prop="type" label="类型" >
+          <el-table-column prop="type" label="类型" :filters="typeFilters" :filter-method="filterType" >
             <template #default="scope">
               <el-tag
                   :type="scope.row.type === 'user' ? '' : 'success'"
@@ -110,6 +131,7 @@ const updateAccountSubmit = () => {
           </el-table-column>
         </el-table>
         <el-button style="width: 100%" @click="addPageOpen = true">Add Item</el-button>
+        <el-button type="text" @click="exportDataToExcel">导出数据到Excel</el-button>
         <el-dialog v-model="addPageOpen" title="添加诈骗信息" width="50vw">
           <el-form :model="addAccount" label-width="80px">
             <el-form-item label="用户名">

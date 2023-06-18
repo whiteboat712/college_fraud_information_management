@@ -37,12 +37,18 @@ let updateInformation = reactive({
   description: '',
 })
 
+const exportDataToExcel = () => {
+  let worksheet = XLSX.utils.json_to_sheet(state.data)
+  let workbook = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheep1');
+  XLSX.writeFile(workbook, 'InformationData.xlsx')
+}
+
 onBeforeMount(() => {
   axios
       .get("http://localhost:8080/api/data/getallinformation")
       .then((res) => {
         // console.log(res.data.data)
-
         state.data = res.data.data
       })
 })
@@ -141,6 +147,7 @@ const filterTableData = computed(() =>
           </el-table-column>
         </el-table>
         <el-button style="width: 100%" @click="addPageOpen = true">Add Item</el-button>
+        <el-button type="text" @click="exportDataToExcel">导出数据到Excel</el-button>
         <el-dialog v-model="addPageOpen" title="添加诈骗信息" width="50vw">
           <el-form :model="addInformation" label-width="80px">
             <el-form-item label="姓名">
